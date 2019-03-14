@@ -1,6 +1,12 @@
 import React from 'react'
 
-const MenuBar = (props) => {
+class MenuBar extends React.Component {
+   
+  handleClick = (event)=>{
+      this.props.getMenuSelect(event.target.id)
+      
+
+  }
 
   /*
 
@@ -10,29 +16,30 @@ const MenuBar = (props) => {
   this programatically? What other behavior do we expect when we click
   on a menu item? Do we need state in this component, and if not, how can
   this component be made aware of what is currently the active menu item?
-
+  {"item " + (selected==="profile" ? "active" : null)}
   */
 
+render(){
   return (
-    <div className="ui four item menu">
-      <a className="item active" id="profile">
+    <div className="ui four item menu"> 
+      <a className={"item " + (this.props.selected ==="profile"? "active": null)} id="profile" onClick={this.handleClick} >
         <i className="user large icon" id="profile"/>
       </a>
 
-      <a className="item" id="photo">
+      <a className={"item " + (this.props.selected ==='photo' ? "active": null)} id="photo" onClick={this.handleClick}>
         <i className="photo large icon" id="photo"/>
       </a>
 
-      <a className="item" id="cocktail">
+      <a className={"item " + (this.props.selected ==='cocktail'? "active": null)} id="cocktail" onClick={this.handleClick}>
         <i className="cocktail large icon" id="cocktail"/>
       </a>
 
-      <a className="item" id="pokemon"> 
+      <a className={"item " + (this.props.selected ==='pokemon'? "active": null)} id="pokemon" onClick={this.handleClick}> 
         <i className=" themeisle large icon" id="pokemon"/>
       </a>
     </div>
   )
-
+  }
 }
 
 export default MenuBar
